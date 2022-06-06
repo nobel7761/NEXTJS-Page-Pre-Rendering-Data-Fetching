@@ -14,6 +14,7 @@ const Home = (props) => {
 };
 
 export async function getStaticProps() {
+  console.log("Refetching....!");
   const pathName = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = await fs.readFile(pathName);
   const data = JSON.parse(jsonData);
@@ -21,6 +22,7 @@ export async function getStaticProps() {
     props: {
       products: data.products,
     },
+    revalidate: 10,
   };
 }
 
